@@ -1,0 +1,175 @@
+/* ============================================================
+   A LITTLE REMINDER — behaviour
+   Vanilla JS only. Three jobs:
+     1. Reveal sections as you scroll (subtle fade-up).
+     2. Open / close the "secret" love-letter modal.
+     3. Draw soft falling petals on a canvas inside the modal.
+   ============================================================ */
+
+/* ============================================================
+   LOVE LETTER — EDIT THIS.
+   Each string in the array becomes one paragraph. Add or remove
+   entries freely. Keep the quotes — use \u2019 for an apostrophe
+   if you must, or simply write normal text (single quotes inside
+   the text are fine as long as you wrap each line in double quotes).
+   ============================================================ */
+const LETTER_PARAGRAPHS = [
+  "I built this little page because words feel too small for everything I feel about you, my Otter.",
+  "From the mountains of Sapa to the clouds of Ta Xua, and every ordinary Tuesday in between — being with you is my favorite thing in the whole world.",
+  "Thank you for the laughter, the quiet moments, the way you steal the blanket and then steal my heart all over again.",
+  "They say opposites attract — and honestly, a gentle little otter and one very soft-hearted gorilla turned out to be the best team there is.",
+  "Whatever comes next, I choose you. Every single time. Forever starts whenever we want it to.",
+];
+
+/* The sign-off line under the letter. */
+const LETTER_SIGNOFF = "Yours, always \u2014 Gorilla";
+
+/* ============================================================
+   1. REVEAL ON SCROLL
+   ============================================================ */
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target); // animate once, then stop watching
+      }
+    });
+  },
+  { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+);
+
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+/* ============================================================
+   2. MODAL OPEN / CLOSE
+   ============================================================ */
+const modal = document.getElementById("modal");
+const secretBtn = document.getElementById("secretBtn");
+const closeBtn = document.getElementById("modalClose");
+
+/* Fill the letter from the array above */
+document.getElementById("letterBody").innerHTML = LETTER_PARAGRAPHS.map(
+  (p) => `<p>${p}</p>`
+).join("");
+document.getElementById("letterSignoff").textContent = LETTER_SIGNOFF;
+
+function openModal() {
+  modal.hidden = false;
+  // Force a reflow so the [open] transition (opacity + card rise) plays.
+  requestAnimationFrame(() => modal.setAttribute("open", ""));
+  // Lock page scroll while the modal is open.
+  document.body.style.overflow = "hidden";
+  startPetals();
+}
+
+function closeModal() {
+  modal.removeAttribute("open");
+  document.body.style.overflow = "";
+  // Wait for the fade-out transition, then truly hide (so it can't be tabbed to).
+  setTimeout(() => {
+    if (!modal.hasAttribute("open")) modal.hidden = true;
+  }, 400);
+  stopPetals();
+}
+
+secretBtn.addEventListener("click", openModal);
+closeBtn.addEventListener("click", closeModal);
+
+/* Close on backdrop click (clicking outside the card) */
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
+});
+
+/* Close on Escape key */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !modal.hidden) closeModal();
+});
+
+/* ============================================================
+   3. FALLING PETALS (canvas)
+   A lightweight particle system — no libraries. Petals drift
+   down with a slow sway and a gentle spin, drawn on each frame.
+   ============================================================ */
+const canvas = document.getElementById("petals");
+const ctx = canvas.getContext("2d");
+
+let petals = [];
+let rafId = null;
+let running = false;
+
+/* Petal palette — soft blush / rose tones */
+const PETAL_COLORS = ["#f6dcdd", "#e3a9ad", "#f2e3e0", "#d98e97", "#f8e9e4"];
+
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+  canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+  ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+}
+
+function spawnPetal(initial) {
+  const w = canvas.offsetWidth;
+  const h = canvas.offsetHeight;
+  return {
+    x: Math.random() * w,
+    y: initial ? Math.random() * h : -20, // begin above the screen when spawning live
+    size: 6 + Math.random() * 8,          // petal "diameter"
+    speedY: 0.6 + Math.random() * 1.1,    // fall speed
+    sway: Math.random() * 2 * Math.PI,    // phase offset for the sway
+    swaySpeed: 0.008 + Math.random() * 0.012,
+    swayAmp: 20 + Math.random() * 30,     // horizontal travel
+    spin: Math.random() * 2 * Math.PI,    // rotation
+    spinSpeed: (Math.random() - 0.5) * 0.02,
+    color: PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)],
+    opacity: 0.55 + Math.random() * 0.4,
+  };
+}
+
+function startPetals() {
+  if (running) return;
+  running = true;
+  resizeCanvas();
+  // Pre-fill so the modal opens with petals already drifting.
+  petals = Array.from({ length: 60 }, () => spawnPetal(true));
+  window.addEventListener("resize", resizeCanvas);
+  loop();
+}
+
+function stopPetals() {
+  running = false;
+  cancelAnimationFrame(rafId);
+  petals = [];
+  ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+  window.removeEventListener("resize", resizeCanvas);
+}
+
+function loop() {
+  if (!running) return;
+  ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+
+  petals.forEach((p) => {
+    // Fall + sway
+    p.y += p.speedY;
+    p.sway += p.swaySpeed;
+    p.x += Math.sin(p.sway) * p.swayAmp * 0.02;
+    p.spin += p.spinSpeed;
+
+    // Draw a leaf/petal shape using a rotated ellipse
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.spin);
+    ctx.globalAlpha = p.opacity;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, p.size * 0.6, p.size, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // Reset when off the bottom (or drifted off the sides)
+    if (p.y > canvas.offsetHeight + 30 || p.x < -50 || p.x > canvas.offsetWidth + 50) {
+      Object.assign(p, spawnPetal(false));
+    }
+  });
+
+  rafId = requestAnimationFrame(loop);
+}
