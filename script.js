@@ -211,11 +211,14 @@ function loop() {
       });
     };
 
-    play(); // try immediately (works on desktop)
-    // Fallbacks: start on the first touch / click / scroll.
+    // Browsers require one interaction before sound is allowed, so the
+    // song starts on her very first tap/scroll anywhere on the page.
     ["pointerdown", "touchstart", "scroll"].forEach((event) => {
       document.addEventListener(event, play, { once: true });
     });
+
+    // Also try right away — on desktop this can autoplay with no tap.
+    play();
   };
 
   // If the music element isn't in the DOM yet, wait for it.
