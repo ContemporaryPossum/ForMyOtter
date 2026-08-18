@@ -15,10 +15,12 @@
    ============================================================ */
 const LETTER_PARAGRAPHS = [
   "I built this little page because words feel too small for everything I feel about you, my Otter.",
-  "From the mountains of Sapa to the clouds of Ta Xua, and every ordinary Tuesday in between — being with you is my favorite thing in the whole world.",
-  "Thank you for the laughter, the quiet moments, the way you steal the blanket and then steal my heart all over again.",
-  "They say opposites attract — and honestly, a gentle little otter and one very soft-hearted gorilla turned out to be the best team there is.",
-  "Whatever comes next, I choose you. Every single time. Forever starts whenever we want it to.",
+  "From our crazy adventures to every normal office Tuesday in between \u2014 being with you is my favorite thing in the whole world.",
+  "Thank you for the laughter, the quiet moments, the way you steal the blanket and more than half the bed every time we sleep, in the end you stole my heart <3",
+  "They say opposites attract \u2014 but i think a mega alpha straightforward otter and one very chill laid back gorilla turned out to be the best team there is.",
+  "Our story is not normal babe, from day one it's already like a K-drama, everyday feels like an adventure with you around :3.",
+  "In every life and every universe, I know i'll be with you, and I can't wait to see us grow old happily and lovingly together if possible",
+  "If its meant to be, it's meant to be",
 ];
 
 /* The sign-off line under the letter. */
