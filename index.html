@@ -177,7 +177,7 @@
         <!-- POLAROID 2 -->
         <figure class="polaroid reveal">
           <div class="polaroid__photo">
-            <img src="IMG_1270.jpeg" alt="Inside joke" loading="lazy" />
+            <img src="IMG_8372.jpeg" alt="Inside joke" loading="lazy" />
           </div>
           <figcaption class="polaroid__caption">
             Our crazy physical attraction to each other.
@@ -365,15 +365,17 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
-
   <!-- ============================================================
        BACKGROUND MUSIC — plays "acs.mp4" (the song) once she opens
        the page. NOTE: browsers block sound until the first
        tap/scroll happens, so it starts on that first interaction.
+       This element MUST come before the script tag so the music
+       code can find it.
        ============================================================ -->
   <audio id="bgMusic" preload="auto" loop>
     <source src="acs.mp4" type="audio/mp4" />
   </audio>
+
+  <script src="script.js"></script>
 </body>
 </html>

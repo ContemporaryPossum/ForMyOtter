@@ -201,18 +201,27 @@ function loop() {
    as soon as she opens the site."
    ============================================================ */
 (function initMusic() {
-  const audio = document.getElementById("bgMusic");
-  if (!audio) return;
+  const start = () => {
+    const audio = document.getElementById("bgMusic");
+    if (!audio) return;
 
-  const play = () => {
-    audio.play().catch(() => {
-      /* still blocked — wait for the next interaction */
+    const play = () => {
+      audio.play().catch(() => {
+        /* still blocked — wait for the next interaction */
+      });
+    };
+
+    play(); // try immediately (works on desktop)
+    // Fallbacks: start on the first touch / click / scroll.
+    ["pointerdown", "touchstart", "scroll"].forEach((event) => {
+      document.addEventListener(event, play, { once: true });
     });
   };
 
-  play(); // try immediately (works on desktop)
-  // Fallbacks: start on the first touch / click / scroll.
-  ["pointerdown", "touchstart", "scroll"].forEach((event) => {
-    document.addEventListener(event, play, { once: true });
-  });
+  // If the music element isn't in the DOM yet, wait for it.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
 })();
