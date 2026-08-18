@@ -173,3 +173,20 @@ function loop() {
 
   rafId = requestAnimationFrame(loop);
 }
+
+/* ============================================================
+   4. CAROUSEL LOOP
+   The strip in the HTML holds ONE group of 5 slides. For the
+   marquee to loop seamlessly, the same group is duplicated here
+   and appended — the CSS animation slides the track by -50%,
+   which is exactly one group width, then restarts invisibly.
+   ============================================================ */
+(function initCarousel() {
+  const track = document.getElementById("carouselTrack");
+  const group = track && track.querySelector(".carousel__group");
+  if (!group) return;
+
+  const clone = group.cloneNode(true);
+  clone.setAttribute("aria-hidden", "true"); // screen readers see the set once
+  track.appendChild(clone);
+})();
