@@ -253,10 +253,13 @@ button {
   font-size: 1.3rem;
 }
 
-.timeline__media img {
+.timeline__media img,
+.timeline__media video {
   width: 100%;
   height: clamp(180px, 30vh, 260px);
   object-fit: cover;
+  display: block;
+  background: #000; /* letterbox behind the video while it loads */
 }
 
 .timeline__body {
