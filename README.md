@@ -32,5 +32,6 @@ Search the files for these markers (all commented):
 | Falling petals color/speed | `styles.css` → `PETAL_COLORS` in `script.js` |
 | Carousel — the slow looping strip under the polaroids | `index.html` → each `.carousel__slide` (10 slides) + `styles.css` → `.carousel` section |
 | Carousel speed / pause on hover | `styles.css` → `carouselSlide 60s` duration in the `.carousel__track` rule |
+| Background music | the song file `acs.mp4` at the repo root plays in a small `<audio>` tag in `index.html`; it starts on her first tap/scroll because browsers block sound until then |
 
 Photo tip: use direct image URLs (png/jpg/webp). Keep them 900–1600px wide for a fast mobile load.

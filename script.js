@@ -192,3 +192,27 @@ function loop() {
   clone.setAttribute("aria-hidden", "true"); // screen readers see the set once
   track.appendChild(clone);
 })();
+
+/* ============================================================
+   5. BACKGROUND MUSIC
+   Tries to autoplay as soon as the page loads. Browsers block
+   sound until the visitor interacts first, so it also starts on
+   the very first tap/scroll — giving the effect of "music starts
+   as soon as she opens the site."
+   ============================================================ */
+(function initMusic() {
+  const audio = document.getElementById("bgMusic");
+  if (!audio) return;
+
+  const play = () => {
+    audio.play().catch(() => {
+      /* still blocked — wait for the next interaction */
+    });
+  };
+
+  play(); // try immediately (works on desktop)
+  // Fallbacks: start on the first touch / click / scroll.
+  ["pointerdown", "touchstart", "scroll"].forEach((event) => {
+    document.addEventListener(event, play, { once: true });
+  });
+})();
