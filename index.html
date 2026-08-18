@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+       A LITTLE REMINDER — a one-page love letter for her.
+       Built with vanilla HTML / CSS / JS. No frameworks.
+       Deploy: push this folder to GitHub, connect to Netlify/Vercel.
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Just a reminder… &mdash; for you</title>
+  <meta name="description" content="A little page made just for you." />
+
+  <!-- Google Fonts (lightweight, loaded via CDN — not a JS library) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       HERO
+       To swap the background image: replace the <img> src below
+       with your own URL, or delete the <img> and the gradient alone
+       will show. The two lines of text are right here to edit.
+       ============================================================ -->
+  <header class="hero" id="top">
+    <!-- HERO IMAGE PLACEHOLDER — drop your photo URL in src -->
+    <img
+      class="hero__bg"
+      src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1920&q=80"
+      alt=""
+      loading="eager"
+    />
+    <!-- Soft scrim over the photo so text stays readable -->
+    <div class="hero__scrim"></div>
+
+    <div class="hero__content">
+      <p class="hero__kicker">for my Otter &mdash; from your Gorilla</p>
+      <h1 class="hero__title">
+        <!-- EDIT: your headline -->
+        Just a reminder&hellip;
+      </h1>
+      <p class="hero__subtitle">
+        <!-- EDIT: your sub-headline -->
+        that every moment with you is one I would relive a thousand times.
+      </p>
+      <a href="#timeline" class="hero__scroll" aria-label="Scroll down">
+        <span>scroll</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7" />
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         MEMORY TIMELINE
+         Each <li> is one memory. To add more, copy a whole <li> block
+         and paste it after the last one (keep the order from oldest to
+         newest). Swap the background-image URL in the style attribute
+         to attach a photo. The karting memory is flagged as a highlight.
+         ============================================================ -->
+    <section class="timeline section" id="timeline">
+      <div class="section-head reveal">
+        <p class="section-head__kicker">our story so far</p>
+        <h2 class="section-head__title">Moments I never want to forget</h2>
+      </div>
+
+      <ol class="timeline__list">
+        <!-- ── MEMORY 1 ─────────────────────────────────────────── -->
+        <li class="timeline__item">
+          <div class="timeline__dot" aria-hidden="true"></div>
+          <article class="timeline__card">
+            <div class="timeline__media">
+              <!-- IMAGE PLACEHOLDER: paste your photo URL below -->
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Sapa and Ta Xua" loading="lazy" />
+            </div>
+            <div class="timeline__body">
+              <span class="timeline__date">March &ndash; April 2026</span>
+              <h3 class="timeline__heading">Sapa &amp; Ta Xua</h3>
+              <p class="timeline__text">
+                Our trip wandering through the misty mountains of Sapa and the
+                sea-of-clouds at Ta Xua. Your hand in mine the whole way.
+              </p>
+            </div>
+          </article>
+        </li>
+
+        <!-- ── MEMORY 2 — THE HIGHLIGHT ─────────────────────────── -->
+        <li class="timeline__item timeline__item--highlight reveal">
+          <div class="timeline__dot" aria-hidden="true"></div>
+          <article class="timeline__card timeline__card--highlight">
+            <span class="timeline__star" aria-hidden="true">★</span>
+            <div class="timeline__media">
+              <!-- IMAGE PLACEHOLDER: paste your photo URL below -->
+              <img src="https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&w=900&q=80" alt="Karting at Ô Quy Hồ pass" loading="lazy" />
+            </div>
+            <div class="timeline__body">
+              <span class="timeline__date">The highlight</span>
+              <h3 class="timeline__heading">An unforgettable race</h3>
+              <p class="timeline__text">
+                Racing each other through the karting session at the
+                &Ocirc; Quy H&#7891; pass &mdash; I let you win. Maybe. You'll
+                never be able to prove it.
+              </p>
+            </div>
+          </article>
+        </li>
+
+        <!-- ── MEMORY 3 — PLACEHOLDER (add more dates below) ────── -->
+        <li class="timeline__item reveal">
+          <div class="timeline__dot" aria-hidden="true"></div>
+          <article class="timeline__card">
+            <div class="timeline__media">
+              <!-- IMAGE PLACEHOLDER -->
+              <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=900&q=80" alt="A memory of ours" loading="lazy" />
+            </div>
+            <div class="timeline__body">
+              <span class="timeline__date">Month &ndash; Year</span>
+              <h3 class="timeline__heading">Your memory title here</h3>
+              <p class="timeline__text">
+                Write a short, sweet line about this moment. Keep it to a
+                sentence or two so the card stays tidy on mobile.
+              </p>
+            </div>
+          </article>
+        </li>
+
+        <!-- ── MEMORY 4 — PLACEHOLDER ───────────────────────────── -->
+        <li class="timeline__item reveal">
+          <div class="timeline__dot" aria-hidden="true"></div>
+          <article class="timeline__card">
+            <div class="timeline__media">
+              <!-- IMAGE PLACEHOLDER -->
+              <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80" alt="A memory of ours" loading="lazy" />
+            </div>
+            <div class="timeline__body">
+              <span class="timeline__date">Month &ndash; Year</span>
+              <h3 class="timeline__heading">Your memory title here</h3>
+              <p class="timeline__text">
+                Write a short, sweet line about this moment. Keep it to a
+                sentence or two so the card stays tidy on mobile.
+              </p>
+            </div>
+          </article>
+        </li>
+
+        <!-- ── MEMORY 5 — PLACEHOLDER ───────────────────────────── -->
+        <li class="timeline__item reveal">
+          <div class="timeline__dot" aria-hidden="true"></div>
+          <article class="timeline__card">
+            <div class="timeline__media">
+              <!-- IMAGE PLACEHOLDER -->
+              <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?auto=format&fit=crop&w=900&q=80" alt="A memory of ours" loading="lazy" />
+            </div>
+            <div class="timeline__body">
+              <span class="timeline__date">Month &ndash; Year</span>
+              <h3 class="timeline__heading">Your memory title here</h3>
+              <p class="timeline__text">
+                Write a short, sweet line about this moment. Keep it to a
+                sentence or two so the card stays tidy on mobile.
+              </p>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============================================================
+         THE "WHY" GRID — polaroid-style image placeholders.
+         Each figure is one polaroid. Swap the <img> src for a photo
+         and edit the caption (the inside joke) under it.
+         ============================================================ -->
+    <section class="section" id="why">
+      <div class="section-head reveal">
+        <p class="section-head__kicker">the little things</p>
+        <h2 class="section-head__title">Why I love you</h2>
+      </div>
+
+      <div class="grid">
+        <!-- POLAROID 1 -->
+        <figure class="polaroid reveal">
+          <div class="polaroid__photo">
+            <img src="https://images.unsplash.com/photo-1521302200778-33500795e128?auto=format&fit=crop&w=600&q=80" alt="Inside joke" loading="lazy" />
+          </div>
+          <figcaption class="polaroid__caption">
+            Because the Otter always steals the Gorilla&rsquo;s fries &mdash; and the Gorilla lets her.
+          </figcaption>
+        </figure>
+
+        <!-- POLAROID 2 -->
+        <figure class="polaroid reveal">
+          <div class="polaroid__photo">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80" alt="Inside joke" loading="lazy" />
+          </div>
+          <figcaption class="polaroid__caption">
+            The way you laugh at your own jokes before you finish them.
+          </figcaption>
+        </figure>
+
+        <!-- POLAROID 3 -->
+        <figure class="polaroid reveal">
+          <div class="polaroid__photo">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Inside joke" loading="lazy" />
+          </div>
+          <figcaption class="polaroid__caption">
+            Your very serious frown while you win at every single game.
+          </figcaption>
+        </figure>
+
+        <!-- POLAROID 4 -->
+        <figure class="polaroid reveal">
+          <div class="polaroid__photo">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80" alt="Inside joke" loading="lazy" />
+          </div>
+          <figcaption class="polaroid__caption">
+            The way the Otter says &ldquo;almost ready&rdquo; and means 45 more minutes &mdash; while the Gorilla waits patiently.
+          </figcaption>
+        </figure>
+
+        <!-- POLAROID 5 -->
+        <figure class="polaroid reveal">
+          <div class="polaroid__photo">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Inside joke" loading="lazy" />
+          </div>
+          <figcaption class="polaroid__caption">
+            The Otter&rsquo;s terrifying &ldquo;let&rsquo;s just look&rdquo; before the Gorilla&rsquo;s wallet gets involved.
+          </figcaption>
+        </figure>
+
+        <!-- POLAROID 6 -->
+        <figure class="polaroid reveal">
+          <div class="polaroid__photo">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Inside joke" loading="lazy" />
+          </div>
+          <figcaption class="polaroid__caption">
+            Because with you, ordinary days feel like adventures.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         THE SECRET — a button that opens the love letter.
+         The letter text lives in the JS (script.js, "LOVE LETTER").
+         ============================================================ -->
+    <section class="secret section">
+      <div class="secret__inner reveal">
+        <p class="secret__kicker">one more thing&hellip;</p>
+        <h2 class="secret__title">I saved the best for last.</h2>
+
+        <!-- THE SECRET BUTTON -->
+        <button class="secret__btn" id="secretBtn" type="button">
+          <span class="secret__btn-text">Tap for a secret</span>
+        </button>
+
+        <p class="secret__hint">(only your eyes should see this)</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>made with all my heart &mdash; forever yours, your Gorilla</p>
+  </footer>
+
+  <!-- ============================================================
+       THE MODAL (love letter) — hidden by default, shown by JS.
+       ============================================================ -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <!-- Canvas where the falling petals are drawn -->
+    <canvas class="modal__petals" id="petals" aria-hidden="true"></canvas>
+
+    <div class="modal__card">
+      <button class="modal__close" id="modalClose" type="button" aria-label="Close">×</button>
+
+      <div class="modal__content">
+        <p class="modal__kicker">a letter, for you</p>
+        <h3 class="modal__title" id="modalTitle">My dearest,</h3>
+        <!-- EDIT THE LETTER IN script.js (search "LOVE LETTER") -->
+        <div class="modal__letter" id="letterBody"></div>
+        <p class="modal__signoff" id="letterSignoff">Yours, always &mdash; &lt;your name&gt;</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
